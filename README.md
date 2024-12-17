@@ -1,5 +1,5 @@
 
-- [Demo Project](https://admin-next-tau.vercel.app/dashboard')
+- [Demo Project](https://admin-next-tau.vercel.app/')
 
 
 ![Screenshot (75)](https://github.com/user-attachments/assets/f7d7cf55-8210-42fa-95ce-f25d04ada04a)
