@@ -1,17 +1,48 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    if (username === 'admin' && password === 'admin') {
+      // اگر نام کاربری و رمز عبور درست باشند، کاربر وارد صفحه بعدی می‌شود
+      setError('')
+      // می‌توانید اینجا ریدایرکت به صفحه داشبورد را انجام دهید
+    } else {
+      // اگر نام کاربری یا رمز عبور اشتباه باشد، خطا نشان داده می‌شود
+      setError('Invalid username or password')
+    }
+  }
+
   return (
     <div className='w-full h-[100vh] flex justify-center items-center'>
-      <form action="" className="bg-[#182237] w-[500px] h-[500px] p-[50px] rounded-[10px] flex flex-col justify-center gap-[30px]">
-      <h1 className='w-full text-center text-[50px]'>Login</h1>
-      <input className='p-[30px] border-[2px] border-solid bg-[#182237] rounded-[5px] outline-none text-white' type="text" placeholder="username" name="username" />
-      <input className='p-[30px] border-[2px] border-solid bg-[#182237] rounded-[5px] outline-none text-white' type="password" placeholder="password" name="password" />
-      <Link href={"/dashboard"} >
-      <button className='rounded-[5px] w-full p-[30px] bg-teal-600 text-white' >Login</button>
-      </Link>
-    </form>
+      <form onSubmit={handleLogin} className="bg-[#182237] w-[500px] h-[500px] p-[50px] rounded-[10px] flex flex-col justify-center gap-[30px]">
+        <h1 className='w-full text-center text-[50px]'>Login</h1>
+        <input 
+          className='p-[30px] border-[2px] border-solid bg-[#182237] rounded-[5px] outline-none text-white' 
+          type="text" 
+          placeholder="username" 
+          name="username" 
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} 
+        />
+        <input 
+          className='p-[30px] border-[2px] border-solid bg-[#182237] rounded-[5px] outline-none text-white' 
+          type="password" 
+          placeholder="password" 
+          name="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+        />
+        {error && <p className="text-red-500 text-center">{error}</p>}
+        <button className='rounded-[5px] w-full p-[30px] bg-teal-600 text-white' type="submit">
+          Login
+        </button>
+      </form>
     </div>
   )
 }
