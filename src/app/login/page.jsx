@@ -1,19 +1,22 @@
+"use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const router = useRouter() // استفاده از useRouter برای ریدایرکت
 
   const handleLogin = (e) => {
     e.preventDefault()
     if (username === 'admin' && password === 'admin') {
-      // اگر نام کاربری و رمز عبور درست باشند، کاربر وارد صفحه بعدی می‌شود
+      // اگر نام کاربری و رمز عبور درست باشند، به صفحه بعدی ریدایرکت می‌کنیم
       setError('')
-      // می‌توانید اینجا ریدایرکت به صفحه داشبورد را انجام دهید
+      router.push('/dashboard') // ریدایرکت به صفحه داشبورد
     } else {
-      // اگر نام کاربری یا رمز عبور اشتباه باشد، خطا نشان داده می‌شود
+      // اگر نام کاربری یا رمز عبور اشتباه باشد، پیام خطا نشان داده می‌شود
       setError('Invalid username or password')
     }
   }
